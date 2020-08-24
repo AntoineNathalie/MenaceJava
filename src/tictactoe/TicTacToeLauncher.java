@@ -2,6 +2,7 @@ package tictactoe;
 
 import tictactoe.player.HumanPlayer;
 import tictactoe.player.Player;
+import tictactoe.player.RandomPlayer;
 
 public class TicTacToeLauncher {
 
@@ -14,7 +15,7 @@ public class TicTacToeLauncher {
         Board board = new Board();
 
         Player player1 = new HumanPlayer(PLAYER1);
-        Player player2 = new HumanPlayer(PLAYER2);
+        Player player2 = new RandomPlayer(PLAYER2);
 
         int player1Wins = 0;
         int player2Wins = 0;

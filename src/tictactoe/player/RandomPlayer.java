@@ -1,10 +1,27 @@
 package tictactoe.player;
 
-public class RandomPlayer {
+import tictactoe.Board;
 
-        /*
-        1 (0, 0) | 2 (0, 1) | 3 (0, 2)
-        4 (1, 0) | 5 (1, 1) | 6 (1, 2)
-        7 (2, 0) | 8 (2, 1) | 9 (2, 2)
-         */
+import java.util.List;
+import java.util.Random;
+
+public class RandomPlayer extends Player {
+
+    public RandomPlayer(char myChar) {
+        super(myChar);
+    }
+
+    @Override
+    public Board makeMove(Board board) {
+        Random rng = new Random();
+        List<Integer> availableMoves = board.availableMoves();
+        int move = availableMoves.get(rng.nextInt(availableMoves.size()));
+
+        int moveX = (move - 1) / 3;
+        int moveY = (move - 1) % 3;
+        board.makeMove(moveX, moveY, getMyChar());
+
+        return board;
+    }
+
 }
