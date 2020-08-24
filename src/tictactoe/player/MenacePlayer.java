@@ -48,11 +48,7 @@ public class MenacePlayer extends Player {
         int move = currentRoundMatchbox.getMove();
         currentGameMoves.add(move);
 
-        // TODO this code is now in three places, it should be one
-        int moveX = (move - 1) / 3;
-        int moveY = (move - 1) % 3;
-        board.makeMove(moveX, moveY, getMyChar());
-
+        board.makeMove(move, getMyChar());
         return board;
     }
 

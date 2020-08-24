@@ -34,6 +34,13 @@ public class Board {
         return availableMoves;
     }
 
+    public void makeMove(int move, char player) {
+        // translate single number to coordinate
+        int moveX = (move - 1) / 3;
+        int moveY = (move - 1) % 3;
+        makeMove(moveX, moveY, player);
+    }
+
     public void makeMove(int x, int y, char player) {
         if (board[x][y] == ' ') {
             board[x][y] = player;

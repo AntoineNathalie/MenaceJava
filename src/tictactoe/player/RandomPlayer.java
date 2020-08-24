@@ -17,10 +17,7 @@ public class RandomPlayer extends Player {
         List<Integer> availableMoves = board.availableMoves();
         int move = availableMoves.get(rng.nextInt(availableMoves.size()));
 
-        int moveX = (move - 1) / 3;
-        int moveY = (move - 1) % 3;
-        board.makeMove(moveX, moveY, getMyChar());
-
+        board.makeMove(move, getMyChar());
         return board;
     }
 
