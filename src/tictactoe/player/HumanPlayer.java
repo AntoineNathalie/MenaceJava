@@ -1,6 +1,7 @@
 package tictactoe.player;
 
 import tictactoe.Board;
+import tictactoe.Result;
 
 import java.util.Scanner;
 
@@ -35,8 +36,17 @@ public class HumanPlayer extends Player {
     }
 
     @Override
-    public void winner(Board board) {
-        System.out.println("Het spel is voorbij dit was het eind bord:");
-        System.out.println(board);
+    public void winner(Result result) {
+        switch (result) {
+            case LOSE:
+                System.out.printf("Helaas %c, je hebt verloren.\n", getMyChar());
+                break;
+            case WIN:
+                System.out.printf("Gefeliciteerd %c, je hebt gewonnen!\n", getMyChar());
+                break;
+            case DRAW:
+                System.out.println("Jullie hebben gelijk gespeeld.");
+                break;
+        }
     }
 }

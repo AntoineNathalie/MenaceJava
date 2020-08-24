@@ -59,20 +59,37 @@ public class Board {
         return returnString;
     }
 
-    public boolean winner() {
+    public char winner() {
 
-        /*
-        1 (0, 0) | 2 (0, 1) | 3 (0, 2)
-        4 (1, 0) | 5 (1, 1) | 6 (1, 2)
-        7 (2, 0) | 8 (2, 1) | 9 (2, 2)
-         */
+        // rows and columns (assuming square board)
+        for (int rowcol = 0; rowcol < board.length; rowcol++) {
+            // rows
+            if (board[rowcol][0] != ' ' && board[rowcol][0] == board[rowcol][1] && board[rowcol][0] == board[rowcol][2]) {
+                return board[rowcol][0];
+            }
 
-        // TODO columns and diagonals
-        return
-            (board[0][0] != ' ' && board[0][0] == board[0][1] && board[0][0] == board[0][2]) ||
-            (board[1][0] != ' ' && board[1][0] == board[1][1] && board[1][0] == board[1][2]) ||
-            (board[2][0] != ' ' && board[2][0] == board[2][1] && board[2][0] == board[2][2]);
+            //columns
+            if (board[0][rowcol] != ' ' && board[0][rowcol] == board[1][rowcol] && board[0][rowcol] == board[2][rowcol]) {
+                return board[0][rowcol];
+            }
+        }
 
+        //diagonals
+        if (board[0][0] != ' ' && board[0][0] == board[1][1] && board[0][0] == board[2][2]) {
+            return board[0][0];
+        }
+
+        if (board[0][2] != ' ' && board[0][2] == board[1][1] && board[0][2] == board[2][0]) {
+            return board[0][2];
+        }
+
+        // no winner, if there are no more moves it is a draw.
+        if (availableMoves().isEmpty()) { // alternative: turn == 9
+            return TicTacToeLauncher.DRAW;
+        }
+
+        // no winner yet
+        return TicTacToeLauncher.EMPTY;
     }
 
     @Override
