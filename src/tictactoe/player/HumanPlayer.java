@@ -34,4 +34,9 @@ public class HumanPlayer extends Player {
         return board;
     }
 
+    @Override
+    public void winner(Board board) {
+        System.out.println("Het spel is voorbij dit was het eind bord:");
+        System.out.println(board);
+    }
 }

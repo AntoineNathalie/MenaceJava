@@ -12,6 +12,8 @@ public abstract class Player {
 
     public abstract Board makeMove(Board board);
 
+    public void winner(Board board){};
+
     public char getMyChar(){
         return myChar;
     }

@@ -1,6 +1,8 @@
 package tictactoe;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Board {
 
@@ -20,12 +22,24 @@ public class Board {
         turn = 0;
     }
 
+    public List<Integer> availableMoves() {
+        List<Integer> availableMoves = new ArrayList<>();
+        for (int row = 0; row < this.board.length; row++) {
+            for (int column = 0; column < this.board[row].length; column++) {
+                if (this.board[row][column] == ' ') {
+                    availableMoves.add((row * 3) + column + 1);
+                }
+            }
+        }
+        return availableMoves;
+    }
+
     public void makeMove(int x, int y, char player) {
         if (board[x][y] == ' ') {
             board[x][y] = player;
             turn++;
         } else {
-            // doe iets...
+            System.out.println(availableMoves());
         }
     }
 
@@ -59,5 +73,18 @@ public class Board {
             (board[1][0] != ' ' && board[1][0] == board[1][1] && board[1][0] == board[1][2]) ||
             (board[2][0] != ' ' && board[2][0] == board[2][1] && board[2][0] == board[2][2]);
 
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Board board1 = (Board) o;
+        return Arrays.equals(board, board1.board);
+    }
+
+    @Override
+    public int hashCode() {
+        return Arrays.hashCode(board);
     }
 }
