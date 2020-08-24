@@ -9,7 +9,7 @@ public class TicTacToeLauncher {
     public static void main(String[] args) {
         Board board = new Board();
 
-        Player player1 = new MenacePlayer('X');
+        Player player1 = new HumanPlayer('X');
         Player player2 = new HumanPlayer('O');
 
         while(!board.winner()) {

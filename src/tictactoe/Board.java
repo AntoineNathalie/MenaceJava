@@ -13,9 +13,9 @@ public class Board {
         board = new char[3][3];
 
         // initialiseer het bord
-        for (int rij = 0; rij < board.length; rij++) {
-            for (int kolom = 0; kolom < board[rij].length; kolom++) {
-                board[rij][kolom] = ' ';
+        for (int row = 0; row < board.length; row++) {
+            for (int column = 0; column < board[row].length; column++) {
+                board[row][column] = ' ';
             }
         }
 
@@ -67,7 +67,7 @@ public class Board {
         7 (2, 0) | 8 (2, 1) | 9 (2, 2)
          */
 
-        // TODO kolommen en diagonalen
+        // TODO columns and diagonals
         return
             (board[0][0] != ' ' && board[0][0] == board[0][1] && board[0][0] == board[0][2]) ||
             (board[1][0] != ' ' && board[1][0] == board[1][1] && board[1][0] == board[1][2]) ||

@@ -18,10 +18,10 @@ public class HumanPlayer extends Player {
         System.out.println(board);
 
         System.out.println("Welk vakje wil je een zet maken?");
-        int zet = keyboard.nextInt();
+        int move = keyboard.nextInt();
 
-        int zetX = (zet - 1) / 3;
-        int zetY = (zet - 1) % 3;
+        int moveX = (move - 1) / 3;
+        int moveY = (move - 1) % 3;
 
         /*
         1 (0, 0) | 2 (0, 1) | 3 (0, 2)
@@ -29,7 +29,7 @@ public class HumanPlayer extends Player {
         7 (2, 0) | 8 (2, 1) | 9 (2, 2)
          */
 
-        board.makeMove(zetX, zetY, getMyChar());
+        board.makeMove(moveX, moveY, getMyChar());
 
         return board;
     }

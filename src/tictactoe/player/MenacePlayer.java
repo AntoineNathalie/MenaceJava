@@ -4,29 +4,29 @@ import tictactoe.Board;
 
 public class MenacePlayer extends Player {
 
-    // matchboxes stapel opslaan per beurt
+    // all matchboxes
 
-    // matchboxes spel
-    // zetten spel
+    // matchboxes current game
+    // moves current game
 
     public MenacePlayer(char myChar) {
         super(myChar);
 
-        // matchboxes aanmaken?
+        // initialize matchboxes
     }
 
     @Override
     public Board makeMove(Board board) {
-        // zoek de matchbox bij het huidige board
-            // eventueel maak de matchbox aan als die nog niet bestaat
+        // search for the matchbox belonging to this board
+            // create the matchbox if it can't be found
 
-        // vraag de matchbox om een zet
+        // let the matchbox determine the next move
 
         return null;
     }
 
     @Override
     public void winner(Board board) {
-        // ik wil leren van de eindstand
+        // learn from the result
     }
 }
