@@ -1,7 +1,6 @@
 package tictactoe;
 
 import tictactoe.player.HumanPlayer;
-import tictactoe.player.MenacePlayer;
 import tictactoe.player.Player;
 
 public class TicTacToeLauncher {
@@ -21,7 +20,7 @@ public class TicTacToeLauncher {
         int player2Wins = 0;
         int draws = 0;
 
-        while(board.winner() != EMPTY) {
+        while(board.winner() == EMPTY) {
             if (board.getTurn() % 2 == 0) {
                 board = player1.makeMove(board);
             } else {

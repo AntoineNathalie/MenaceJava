@@ -12,7 +12,7 @@ public class Board {
     public Board(){
         board = new char[3][3];
 
-        // initialiseer het bord
+        // initialise the board (can be done more easily, this is also to illustrate the double for loop)
         for (int row = 0; row < board.length; row++) {
             for (int column = 0; column < board[row].length; column++) {
                 board[row][column] = ' ';

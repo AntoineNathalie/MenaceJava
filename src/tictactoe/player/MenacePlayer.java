@@ -1,6 +1,7 @@
 package tictactoe.player;
 
 import tictactoe.Board;
+import tictactoe.Result;
 
 public class MenacePlayer extends Player {
 
@@ -26,7 +27,7 @@ public class MenacePlayer extends Player {
     }
 
     @Override
-    public void winner(Board board) {
+    public void winner(Result result) {
         // learn from the result
     }
 }

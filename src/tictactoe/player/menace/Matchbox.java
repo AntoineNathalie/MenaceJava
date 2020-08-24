@@ -17,7 +17,7 @@ public class Matchbox {
         this.board = board;
         List<Integer> availableMoves = board.availableMoves();
         moveBeads = new ArrayList<>();
-        for (Integer integer : availableMoves) {
+        for (Integer ignored : availableMoves) {
             moveBeads.add(INTIAL_KRAALTJES);
         }
     }
