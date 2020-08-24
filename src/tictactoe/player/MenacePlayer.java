@@ -2,28 +2,58 @@ package tictactoe.player;
 
 import tictactoe.Board;
 import tictactoe.Result;
+import tictactoe.player.menace.Matchbox;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenacePlayer extends Player {
 
-    // all matchboxes
+    List<ArrayList<Matchbox>> matchboxes;
 
-    // matchboxes current game
-    // moves current game
+    List<Matchbox> currentGameMatchboxes;
+    List<Integer> currentGameMoves;
 
     public MenacePlayer(char myChar) {
         super(myChar);
 
-        // initialize matchboxes
+        matchboxes = new ArrayList<>();
+        for (int turn = 0; turn < 9; turn++) { // there are at most 9 turns, (0-8)
+            matchboxes.add(new ArrayList<>());
+        }
+
+        currentGameMatchboxes = new ArrayList<>();
+        currentGameMoves = new ArrayList<>();
     }
 
     @Override
     public Board makeMove(Board board) {
+        Matchbox currentRoundMatchbox = null;
+
         // search for the matchbox belonging to this board
-            // create the matchbox if it can't be found
+        for (Matchbox matchbox : matchboxes.get(board.getTurn())) {
+            if (matchbox.getBoard().equals(board)) {
+                currentRoundMatchbox = matchbox;
+            }
+        }
+
+        // create the matchbox if it can't be found
+        if (currentRoundMatchbox == null) {
+            currentRoundMatchbox = new Matchbox(board);
+            matchboxes.get(board.getTurn()).add(currentRoundMatchbox);
+        }
 
         // let the matchbox determine the next move
+        currentGameMatchboxes.add(currentRoundMatchbox);
+        int move = currentRoundMatchbox.getMove();
+        currentGameMoves.add(move);
 
-        return null;
+        // TODO this code is now in three places, it should be one
+        int moveX = (move - 1) / 3;
+        int moveY = (move - 1) % 3;
+        board.makeMove(moveX, moveY, getMyChar());
+
+        return board;
     }
 
     @Override
