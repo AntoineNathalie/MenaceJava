@@ -62,5 +62,13 @@ public class MenacePlayer extends Player {
         // reset for next game
         currentGameMatchboxes = new ArrayList<>();
         currentGameMoves = new ArrayList<>();
+
+        // count matchboxes
+        int count = 0;
+        for (ArrayList<Matchbox> matchbox : matchboxes) {
+            for (Matchbox matchbox1 : matchbox) {
+                count++;
+            }
+        }
     }
 }

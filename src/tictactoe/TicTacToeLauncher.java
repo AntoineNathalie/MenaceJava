@@ -24,7 +24,7 @@ public class TicTacToeLauncher {
         int iteration = 0;
 
         System.out.println("    Player 1 | Player 2 |    Draws");
-        while (player1Wins < 1500) {
+        while (player1Wins < 1900) {
             while (board.winner() == EMPTY) {
                 if (board.getTurn() % 2 == 0) {
                     board = player1.makeMove(board);
@@ -65,7 +65,7 @@ public class TicTacToeLauncher {
 
         }
 
-        System.out.printf("%8d | %8d | %8d\n", player1Wins, player2Wins, draws);
+        System.out.printf("    %8d | %8d | %8d\n", player1Wins, player2Wins, draws);
 
     }
 

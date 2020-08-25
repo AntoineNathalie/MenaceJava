@@ -21,7 +21,7 @@ public class Matchbox {
     Random rng;
 
     public Matchbox(Board board){
-        this.board = board;
+        this.board = new Board(board);
         availableMoves = board.availableMoves();
         moveBeads = new ArrayList<>();
         for (Integer ignored : availableMoves) {
@@ -35,6 +35,12 @@ public class Matchbox {
         int totalBeads = 0;
         for (Integer moveBead : moveBeads) {
             totalBeads += moveBead;
+        }
+
+        if (totalBeads == 0) {
+            // if the box is empty, make a random move (it doesn't matter you should quit anyway)
+            int move = availableMoves.get(rng.nextInt(availableMoves.size()));
+            return move;
         }
 
         int randomSelection = rng.nextInt(totalBeads);

@@ -22,6 +22,18 @@ public class Board {
         turn = 0;
     }
 
+    public Board(Board board) {
+        this.board = new char[3][3];
+
+        for (int row = 0; row < this.board.length; row++) {
+            for (int column = 0; column < this.board[row].length; column++) {
+                this.board[row][column] = board.getCoordinate(row, column);
+            }
+        }
+
+        turn = board.getTurn();
+    }
+
     public List<Integer> availableMoves() {
         List<Integer> availableMoves = new ArrayList<>();
         for (int row = 0; row < this.board.length; row++) {
@@ -99,12 +111,21 @@ public class Board {
         return TicTacToeLauncher.EMPTY;
     }
 
+    public char getCoordinate(int x, int y) {
+        return board[x][y];
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
+        //if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Board board1 = (Board) o;
-        return Arrays.equals(board, board1.board);
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
+                if (getCoordinate(row, col) != ((Board) o).getCoordinate(row, col)){ return false; }
+            }
+        }
+        return true;
     }
 
     @Override
