@@ -38,5 +38,6 @@ public class HumanPlayer extends Player {
                 System.out.println("Jullie hebben gelijk gespeeld.");
                 break;
         }
+
     }
 }

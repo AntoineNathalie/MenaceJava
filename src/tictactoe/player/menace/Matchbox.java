@@ -8,19 +8,27 @@ import java.util.List;
 import java.util.Random;
 
 public class Matchbox {
+    private static final int LOSE = -3;
+    private static final int WIN = 5;
+    private static final int DRAW = -1;
 
-    private final int INTIAL_KRAALTJES = 7;
+    private final int INITIAL_KRAALTJES = 7;
 
     private Board board;
     private List<Integer> moveBeads;
+    List<Integer> availableMoves;
+
+    Random rng;
 
     public Matchbox(Board board){
         this.board = board;
-        List<Integer> availableMoves = board.availableMoves();
+        availableMoves = board.availableMoves();
         moveBeads = new ArrayList<>();
         for (Integer ignored : availableMoves) {
-            moveBeads.add(INTIAL_KRAALTJES);
+            moveBeads.add(INITIAL_KRAALTJES);
         }
+
+        rng = new Random();
     }
 
     public int getMove(){
@@ -29,20 +37,37 @@ public class Matchbox {
             totalBeads += moveBead;
         }
 
-        Random rng = new Random();
-
         int randomSelection = rng.nextInt(totalBeads);
-        int moveIndex = 0;
-        while (randomSelection > 0) {
-            randomSelection -= moveBeads.get(moveIndex);
-            moveIndex++;
-        }
+        int moveIndex = -1;
 
-        return board.availableMoves().get(moveIndex);
+        do {
+            moveIndex++;
+            randomSelection -= moveBeads.get(moveIndex);
+        } while (randomSelection > 0);
+
+        return availableMoves.get(moveIndex);
     }
 
     public void learn(int move, Result result){
         // learn from the result i.e. add or remove beads for the move
+
+        int moveIndex = availableMoves.indexOf(move);
+        switch (result) {
+            case LOSE:
+                moveBeads.set(moveIndex, moveBeads.get(moveIndex) + LOSE);
+                break;
+            case WIN:
+                moveBeads.set(moveIndex, moveBeads.get(moveIndex) + WIN);
+                break;
+            case DRAW:
+                moveBeads.set(moveIndex, moveBeads.get(moveIndex) + DRAW);
+                break;
+        }
+
+        // make sure the changed move doesn't go negative
+        if (moveBeads.get(moveIndex) < 0) {
+            moveBeads.set(moveIndex, 0);
+        }
     }
 
     public Board getBoard() {

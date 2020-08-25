@@ -54,6 +54,13 @@ public class MenacePlayer extends Player {
 
     @Override
     public void winner(Result result) {
-        // learn from the result
+        for (int turn = 0; turn < currentGameMoves.size(); turn++) {
+            // for every matchbox in this game learn from the move that lead to result
+            currentGameMatchboxes.get(turn).learn(currentGameMoves.get(turn), result);
+        }
+
+        // reset for next game
+        currentGameMatchboxes = new ArrayList<>();
+        currentGameMoves = new ArrayList<>();
     }
 }
